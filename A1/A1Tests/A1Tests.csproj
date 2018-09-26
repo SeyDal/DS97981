@@ -72,6 +72,12 @@
       <Name>A1</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\In_1.txt" />
+    <Content Include="TestData\In_2.txt" />
+    <Content Include="TestData\Out_1.txt" />
+    <Content Include="TestData\Out_2.txt" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
