@@ -18,6 +18,8 @@ namespace A1.Tests
         {
             Assert.AreEqual(3, Program.Add(1, 2));
         }
+
+
         [TestMethod(), Timeout(1000)]
         [DeploymentItem("TestData", "TestData")]
         public void GradedTest()
