@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D2E0D993-5772-43C5-908C-980FB8CB3172}</ProjectGuid>
+    <ProjectGuid>{0A483B95-1AB8-4D3F-A13A-08B69B432D8E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>A1Tests</RootNamespace>
@@ -68,9 +68,14 @@
       <Name>TestCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\A1\A1.csproj">
-      <Project>{74BE3116-46C7-43AA-AB50-C230EBDC196A}</Project>
+      <Project>{0F536868-A102-42EF-9522-FC1F8A6D1743}</Project>
       <Name>A1</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

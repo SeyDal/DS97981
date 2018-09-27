@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace A1
 {
     public class Program
     {
+        static void Main(string[] args)
+        {
+        }
+
         public static string Process(string input)
         {
             StringBuilder sb = new StringBuilder();
@@ -21,13 +25,10 @@ namespace A1
             }
             return sb.ToString();
         }
+
         public static int Add(int a, int b)
         {
             return a + b;
-        }
-        static void Main(string[] args)
-        {
-            
         }
     }
 }
