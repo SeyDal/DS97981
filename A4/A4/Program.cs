@@ -162,6 +162,7 @@ namespace A4
 
         public static string MaximizeSalary6 (long n , long[] numbers)
         {
+            int x;
             List<long> numbers_tmp = new List<long>();
             numbers_tmp = numbers.ToList();
             string result = "";
@@ -190,7 +191,7 @@ namespace A4
 
 
         public static string ProcessMaximizeSalary6 (string inStr) =>
-            TestTools.Process(inStr, MaximizeSalary6);
+            TestTools.Process(inStr, (Func<long, long[], string>) MaximizeSalary6);
         public static string ProcessMaximizeNumberOfPrizePlaces5(string inStr) =>
             TestTools.Process(inStr,(Func < long, long[]>)MaximizeNumberOfPrizePlaces5);
 
