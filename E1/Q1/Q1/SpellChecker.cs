@@ -19,8 +19,21 @@ namespace Q1
         {
             List<WordCount> candidates = 
                 new List<WordCount>();
+            List<string> candidates_list = new List<string>();
+            candidates_list = CandidateGenerator.GetCandidates(misspelling).ToList();
 
-            // TODO
+
+            for (int i = 0; i < candidates_list.Count(); i++)
+            {
+                ulong count;
+                LanguageModel.GetCount(candidates_list[i], out count);
+                if (count != 0)
+                    candidates.Add(new WordCount(candidates_list[i], count));
+
+            }
+
+
+
 
             return candidates
                     .OrderByDescending(x => x.Count)
