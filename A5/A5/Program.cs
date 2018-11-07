@@ -42,8 +42,8 @@ namespace A5
             return result_Array;
         }
 
-        public static string ProcessBinarySearch1(string inStr) =>
-            TestTools.Process(inStr, BinarySearch1);
+        public static string ProcessBinarySearch1(string inStr)
+           => TestTools.Process(inStr, (Func<long[], long[], long[]>)BinarySearch1);
 
 
         public static Tuple<List<long>, List<long>> MajorityElement(long[] a,int start , int end)
@@ -392,8 +392,8 @@ namespace A5
             return result_list.ToArray();
         }
 
-        public static string ProcessOrganizingLottery5(string inStr) =>
-            TestTools.Process(inStr,OrganizingLottery5);
+        public static string ProcessOrganizingLottery5(string inStr)
+            => TestTools.Process(inStr, (Func<long[], long[], long[], long[]>)OrganizingLottery5);
 
         public static double FindDistance (double x1 ,double y1 , double x2, double y2)
         {
