@@ -45,7 +45,7 @@ namespace TestCommon
                 }
             }
 
-            Assert.IsTrue(failedTests.Count == 0,
+           Assert.IsTrue(failedTests.Count == 0,
                 $"{failedTests.Count} out of {inFiles.Length} tests failed: {string.Join("\n", failedTests)}");
 
             Console.WriteLine($"All {inFiles.Length} tests passed.");
