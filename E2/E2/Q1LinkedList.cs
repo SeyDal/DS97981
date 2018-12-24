@@ -25,6 +25,7 @@ namespace E2
 
         private Node Head = null;
         private Node Tail = null;
+        private Node tmp_tail;
 
         public void Insert(int key)
         {
@@ -38,6 +39,7 @@ namespace E2
                 Tail.Next = newNode;
                 newNode.Prev = Tail;
                 Tail = newNode;
+                tmp_tail = Tail;
             }
         }
 
@@ -45,14 +47,46 @@ namespace E2
 
         public void Reverse()
         {
-            // زحمت بکشید پیاده سازی کنید
-            // اگر نیاز بود میتوانید متد اضافه کنید
+            
+           
+            if (Tail.Next == Head)
+            {
+                Tail.Next.Next = null;
+                Tail.Next.Prev = Tail;
+                Tail = Tail.Next;
+                Head = tmp_tail;
+                
+            }
+            else
+            {
+               if (Tail.Next == null)
+                {
+                    Tail.Next = Tail.Prev;
+                    Tail.Prev = null;
+                    Reverse();
+                }
+               else
+                {
+                    Tail.Next.Next = Tail.Next.Prev;
+                    Tail.Next.Prev = Tail;
+                    Tail = Tail.Next;
+                    Reverse();
+                }
+                
+            }
         }
 
         public void DeepReverse()
         {
-            // زحمت بکشید پیاده سازی کنید
-            // اگر نیاز بود میتوانید متد اضافه کنید
+            Tail.Next = Tail.Prev;
+            Tail.Prev = null;
+            while (Tail != Head)
+            {
+                Tail.Next.Next = Tail.Next.Prev;
+                Tail.Next.Prev = Tail;
+                Tail = Tail.Next;
+            }
+            Head = tmp_tail;
         }
 
         public IEnumerable<int> GetForwardEnumerator()
