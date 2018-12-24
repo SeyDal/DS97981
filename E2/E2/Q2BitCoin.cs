@@ -24,12 +24,30 @@ namespace E2
             BitConverter.GetBytes(nonce).CopyTo(data, sizeof(uint));
 
             // Calculate Hash
-            byte[] doubleHash = Hasher.ComputeHash(Hasher.ComputeHash(data));
+            byte[] doubleHash1 = Hasher.ComputeHash(Hasher.ComputeHash(data));
 
             // How many zero bytes does it have at the end?
             int zeroBytes = CountEndingZeroBytes(
-                doubleHash,
+                doubleHash1,
                 difficultyLevel);
+            for (int i = 0; i<100000000; i++)
+            {
+                nonce = (uint)i;
+
+                // Copy nonce to the end of data
+                BitConverter.GetBytes(nonce).CopyTo(data, sizeof(uint));
+
+                // Calculate Hash
+                byte[] doubleHash = Hasher.ComputeHash(Hasher.ComputeHash(data));
+
+                // How many zero bytes does it have at the end?
+                zeroBytes = CountEndingZeroBytes(
+                    doubleHash,
+                    difficultyLevel);
+                if (zeroBytes >= difficultyLevel)
+                    break;
+
+            }
 
             // Return if the number of zero bytes is enough
             return zeroBytes >= difficultyLevel;

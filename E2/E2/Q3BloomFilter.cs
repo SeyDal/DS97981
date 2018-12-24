@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace E2
@@ -8,6 +9,10 @@ namespace E2
     {
         BitArray Filter;
         Func<string, int>[] HashFunctions;
+        long filter_size = 0;
+        long hashfunc_size = 0;
+        List<int> rnd_list;
+
 
         public Q3BloomFilter(int filterSize, int hashFnCount)
         {
@@ -16,27 +21,82 @@ namespace E2
             Random rnd = new Random();
             Filter = new BitArray(filterSize);
             HashFunctions = new Func<string, int>[hashFnCount];
-
+            filter_size = filterSize;
+            hashfunc_size = hashFnCount;
+            List<int> rnd_list = new List<int>();
+            for (int i = 0; i < hashFnCount; i++)
+                rnd_list.Add(rnd.Next());
             for (int i = 0; i < HashFunctions.Length; i++)
             {
-                HashFunctions[i] = str => MyHashFunction(str, rnd.Next());
+                HashFunctions[i] = str => MyHashFunction(str, rnd_list[i]);
             }
+
+
         }
 
         public int MyHashFunction(string str, int num)
         {
-            return str.GetHashCode() + num;
+           
+            int result = 0;
+            if (num == 0)
+            {
+                long BigPrimeNumber = 1000000007;
+                long ChosenX = 456;
+                long hash = 0;
+                for (int i = str.Length - 1; i > -1; i--)
+                {
+                    hash = (hash * ChosenX + (int)(str[i])) % BigPrimeNumber;
+                }
+                result =(int) (hash % filter_size);
+            }
+            else if (num == 1)
+            {
+                long BigPrimeNumber = 1000000007;
+                long ChosenX = 263;
+                long hash = 0;
+                for (int i = str.Length - 1; i > -1; i--)
+                {
+                    hash = (hash * ChosenX + (int)(str[i])) % BigPrimeNumber;
+                }
+                result = (int)(hash % filter_size);
+
+            }
+            else if (num == 2)
+            {
+                long BigPrimeNumber = 1000000007;
+                long ChosenX = 1024;
+                long hash = 0;
+                for (int i = str.Length - 1; i > -1; i--)
+                {
+                    hash = (hash * ChosenX + (int)(str[i])) % BigPrimeNumber;
+                }
+                result = (int)(hash % filter_size);
+
+            }
+          
+            return result;
         }
 
         public void Add(string str)
         {
-            // زحمت بکشید پیاده سازی کنید
+            for (int i =0; i < hashfunc_size; i++)
+            {
+                Filter[MyHashFunction(str,i)] = true;
+            }
         }
 
         public bool Test(string str)
         {
-            // زحمت بکشید پیاده سازی کنید
-            return true;
+            bool result = true;
+            for (int i = 0; i < hashfunc_size; i++)
+            {
+                 if (Filter[MyHashFunction(str, i)] != true)
+                {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
         }
     }
 }
