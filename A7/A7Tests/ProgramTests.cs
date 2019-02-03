@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace A7.Tests
 {
-    [TestClass()]
+    [TestClass()]//Grade:A7:100
     public class ProgramTests
     {
        
